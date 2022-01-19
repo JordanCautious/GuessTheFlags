@@ -30,8 +30,6 @@ struct ContentView: View {
                 
                 // Title and Icon
                 VStack {
-                    Image(systemName: "flag.square.fill")
-                        .foregroundColor(.black)
                     Text("Guess The Flag!")
                     .foregroundColor(.white)
                 }
