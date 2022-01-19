@@ -26,9 +26,13 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 
-                Text("Guess The Flag")
-                    .font(.largeTitle.bold())
+                VStack {
+                    Image(systemName: "flag.square.fill")
+                        .foregroundColor(.black)
+                    Text("Guess The Flag!")
                     .foregroundColor(.white)
+                }
+                .font(.largeTitle.bold())
                 
                 Spacer()
                 
