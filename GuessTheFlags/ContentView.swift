@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    // Varibles needed for the project
     @State private var showingScore = false
     @State private var scoreTitle = ""
     @State private var score = 0
@@ -15,6 +16,7 @@ struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     
+    // Body of the view
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -26,6 +28,7 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 
+                // Title and Icon
                 VStack {
                     Image(systemName: "flag.square.fill")
                         .foregroundColor(.black)
@@ -36,8 +39,10 @@ struct ContentView: View {
                 
                 Spacer()
                 
+                // Box of flags
                 VStack (spacing: 15.0) {
                     VStack {
+                        // Title of box and country
                         Text("Tap the flag of")
                             .font(.subheadline)
                             .fontWeight(.heavy)
@@ -48,6 +53,7 @@ struct ContentView: View {
                             .fontWeight(.semibold)
                     }
                     
+                    // List of flags
                     ForEach(0..<3) { number in
                         Button {
                             flagTapped(number)
@@ -66,8 +72,9 @@ struct ContentView: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
                 
                 Spacer()
-
-            Text("Score: \(score)")
+                
+                // Current Score
+                Text("Score: \(score)")
                     .foregroundColor(.white)
                     .font(.title.bold())
                 
@@ -75,13 +82,16 @@ struct ContentView: View {
             }
             .padding(10)
         }
+        // Alert notifcation if the user guesses correctly
         .alert(scoreTitle, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
             Text("Your score is \(score)")
         }
     }
-    // testing
+
+    // Functions needed for the project
+    
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct!"
