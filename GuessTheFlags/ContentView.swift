@@ -17,12 +17,19 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.mint
+            LinearGradient(gradient: Gradient(colors: [.blue, .black]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             VStack (spacing: 30.0) {
                 VStack {
                     Text("Tap the flag of")
+                        .font(.subheadline)
+                        .fontWeight(.heavy)
+                        .foregroundColor(.white)
+                    
                     Text(countries[correctAnswer])
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color.white)
                 }
                 .foregroundStyle(.white)
                 
@@ -32,6 +39,8 @@ struct ContentView: View {
                     } label: {
                         Image(countries[number])
                             .renderingMode(.original)
+                            .clipShape(Capsule())
+                            .shadow(radius: 10)
                     }
                 }
             }
@@ -45,10 +54,10 @@ struct ContentView: View {
     // testing
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
-            scoreTitle = "Correct"
+            scoreTitle = "Correct!"
             score += 1
         } else {
-            scoreTitle = "Wrong"
+            scoreTitle = "Wrong!"
         }
         
         showingScore = true
