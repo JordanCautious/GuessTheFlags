@@ -16,6 +16,9 @@ struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     
+    let title = Text("Guess The Flag!")
+    let boxTitle = Text("Tap the flag of...")
+    
     // Body of the view
     var body: some View {
         ZStack {
@@ -28,9 +31,9 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 
-                // Title and Icon
+                // Title
                 VStack {
-                    Text("Guess The Flag!")
+                    title
                     .foregroundColor(.white)
                 }
                 .font(.largeTitle.bold())
@@ -41,7 +44,7 @@ struct ContentView: View {
                 VStack (spacing: 15.0) {
                     VStack {
                         // Title of box and country
-                        Text("Tap the flag of")
+                        boxTitle
                             .font(.subheadline)
                             .fontWeight(.heavy)
                             .foregroundStyle(.secondary)
