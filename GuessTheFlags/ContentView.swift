@@ -15,15 +15,42 @@ struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     
-    
     let title = Text("Guess The Flag!")
         .foregroundColor(.white)
         .font(.largeTitle)
         .bold()
-
+    
     let boxTitle = Text("Tap the flag of")
         .font(.title2)
         .bold()
+    
+    var countryTitle: some View {
+        Text(countries[correctAnswer])
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+    }
+    
+    var currentScore: some View {
+        Text("Score: \(score)")
+            .foregroundColor(.white)
+            .font(.largeTitle)
+            .bold()
+            .padding(-5)
+    }
+    
+    var flagList: some View {
+        ForEach(0..<3) { number in
+            Button {
+                flagTapped(number)
+            } label: {
+                Image(countries[number])
+                    .renderingMode(.original)
+                    .clipShape(Capsule())
+                    .shadow(radius: 10)
+            }
+            .padding(5)
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -33,34 +60,19 @@ struct ContentView: View {
                 .init(color: Color(red: 0.70, green: 0.2, blue: 0.20), location: 0.3)
             ], center: .top, startRadius: 200, endRadius: 700)
                 .ignoresSafeArea()
-            
             VStack {
                 Spacer()
                 title
                 Spacer()
-                
                 // Everything that's inside the box
                 VStack (spacing: 15.0) {
                     VStack {
                         boxTitle
-                        
-                        Text(countries[correctAnswer])
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
+                        Divider()
+                            .padding(-5.0)
+                        countryTitle
                     }
-                    
-                    // List of flags
-                    ForEach(0..<3) { number in
-                        Button {
-                            flagTapped(number)
-                        } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 10)
-                        }
-                        .padding(5)
-                    }
+                    flagList
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
@@ -68,16 +80,8 @@ struct ContentView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 
                 Spacer()
-                
-                // Current Score
-                Text("Score: \(score)")
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(-5)
-                
+                currentScore
                 Spacer()
-                
             }
             .padding(10)
         }
