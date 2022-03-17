@@ -48,14 +48,12 @@ struct ContentView: View {
             .init(color: Color(red:0.1, green: 0.2, blue: 0.45), location: 0.3),
             .init(color: Color(red: 0.70, green: 0.2, blue: 0.20), location: 0.3)
         ], center: .top, startRadius: 200, endRadius: 700)
-            .ignoresSafeArea()
+        .ignoresSafeArea()
     }
-    
     
     var titles = Titles()
     var body: some View {
         ZStack {
-            // Background Gradient
             radial
             VStack {
                 Spacer()
@@ -82,8 +80,6 @@ struct ContentView: View {
             }
             .padding(10)
         }
-        
-        // Alert notifcation based on the user's guess
         .alert(scoreTitle, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
