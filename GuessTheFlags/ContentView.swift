@@ -59,7 +59,6 @@ struct ContentView: View {
                 Spacer()
                 titles.title
                 Spacer()
-                // Everything that's inside the box
                 VStack (spacing: 15.0) {
                     VStack {
                         titles.boxTitle
@@ -72,8 +71,7 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
                 .background(.thinMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                
+                .clipShape(RoundedRectangle(cornerRadius: 15))
                 Spacer()
                 currentScore
                 Spacer()
@@ -94,7 +92,6 @@ struct ContentView: View {
         } else {
             scoreTitle = "Wrong!"
         }
-        
         showingScore = true
     }
     
