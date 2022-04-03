@@ -59,19 +59,7 @@ struct ContentView: View {
                 Spacer()
                 titles.title
                 Spacer()
-                VStack (spacing: 15.0) {
-                    VStack {
-                        titles.boxTitle
-                        Divider()
-                            .padding(-5.0)
-                        countryTitle
-                    }
-                    flagList
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 20)
-                .background(.thinMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
+                BoxView()
                 Spacer()
                 currentScore
                 Spacer()
@@ -110,6 +98,24 @@ struct Titles {
     let boxTitle = Text("Tap the flag of")
         .font(.title2)
         .bold()
+}
+
+struct BoxView: View {
+    var body: some View {
+        VStack (spacing: 15.0) {
+            VStack {
+                Titles().boxTitle
+                Divider()
+                    .padding(-5.0)
+                ContentView().countryTitle
+            }
+            ContentView().flagList
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 20)
+        .background(.thinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
